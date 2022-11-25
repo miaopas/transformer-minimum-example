@@ -33,24 +33,13 @@ def get_testing():
 
 def get_minimum_test_config():
     """Returns the ViT-B/16 configuration."""
-    config = ml_collections.ConfigDict()
-    config.patches = ml_collections.ConfigDict({'size': (1, 1)})
-    config.hidden_size = 32
-    config.transformer = ml_collections.ConfigDict()
-    config.transformer.mlp_dim = 32
-    config.transformer.num_heads = 4
-    config.transformer.num_layers = 2
-    config.transformer.attention_dropout_rate = 0.0
-    config.transformer.dropout_rate = 0.1
-    config.classifier = 'token'
-    config.representation_size = None
 
 
     config = ml_collections.ConfigDict()
     config.patches = ml_collections.ConfigDict({'size': (1, 1)})
-    config.hidden_size = 32
+    config.hidden_size = 64
     config.transformer = ml_collections.ConfigDict()
-    config.transformer.mlp_dim = 32
+    config.transformer.mlp_dim = 64
     config.transformer.num_heads = 1
     config.transformer.num_layers = 1
     config.transformer.attention_dropout_rate = 0.0

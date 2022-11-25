@@ -114,10 +114,10 @@ def minimum_example():
     args.dataset = (train_loader, valid_loader)
     args.name = 'Vit_minimum'
     args.num_steps = 1000000
-    args.device = [0]
+    args.device = [0,1]
     args.gradient_accumulation_steps = 1
     args.img_size = 2
-    args.learning_rate = 3e-2
+    args.learning_rate = 1e-3
     args.weight_decay = 0
     args.decay_type = 'cosine'
     args.warmup_steps = 500
@@ -145,7 +145,7 @@ def minimum_example_with_rotate():
 
         return np.array([np.array(a).reshape(2,2)])
 
-    data_num = 30000
+    data_num = 60000
     inputs = np.array([ generate1() for _ in range(data_num//4)] +
                         [np.rot90(generate1(), k=1, axes=(1,2)) for _ in range(data_num//4)] +
                         [np.rot90(generate1(), k=2, axes=(1,2)) for _ in range(data_num//4)] +
@@ -183,7 +183,7 @@ def minimum_example_with_rotate():
     args.dataset = (train_loader, valid_loader)
     args.name = 'ViT-minimum_rotate'
     args.num_steps = 1000000
-    args.device = [0]
+    args.device = [0,1]
     args.gradient_accumulation_steps = 1
     args.img_size = 2
     args.learning_rate = 1e-4
@@ -193,6 +193,9 @@ def minimum_example_with_rotate():
 
     args, model = setup(args)
 
+    # trained = VitModel.load_from_checkpoint('')
+
+    # model.model.transformer.embeddings.patch_embeddings.weight.data = 
 
     train(args, model)
 

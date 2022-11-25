@@ -87,6 +87,9 @@ class Attention(nn.Module):
         weights = attention_probs if self.vis else None
         attention_probs = self.attn_dropout(attention_probs)
 
+
+        # attention_probs[0,0][1:] = torch.zeros_like(attention_probs[0,0][1:])
+
         context_layer = torch.matmul(attention_probs, value_layer)
         context_layer = context_layer.permute(0, 2, 1, 3).contiguous()
         new_context_layer_shape = context_layer.size()[:-2] + (self.all_head_size,)
